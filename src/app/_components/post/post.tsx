@@ -28,13 +28,7 @@ export function LatestPost() {
 					</p>
 				</>
 			:	<p>You have no posts yet.</p>}
-			<form
-				// onSubmit={(e) => {
-				// 	e.preventDefault();
-				// 	createPost.mutate({ name });
-				// }}
-				className='flex flex-col gap-2'
-			>
+			<div>
 				<input
 					type='text'
 					placeholder='Title'
@@ -50,7 +44,7 @@ export function LatestPost() {
 				>
 					{createPost.isPending ? 'Submitting...' : 'Submit'}
 				</button>
-			</form>
+			</div>
 		</div>
 	);
 }
