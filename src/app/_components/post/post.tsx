@@ -15,6 +15,10 @@ export function LatestPost() {
 		},
 	});
 
+	const onCreatePost = () => {
+		createPost.mutate({ name });
+	};
+
 	return (
 		<div className='w-full max-w-xs'>
 			{latestPost ?
@@ -25,10 +29,10 @@ export function LatestPost() {
 				</>
 			:	<p>You have no posts yet.</p>}
 			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					createPost.mutate({ name });
-				}}
+				// onSubmit={(e) => {
+				// 	e.preventDefault();
+				// 	createPost.mutate({ name });
+				// }}
 				className='flex flex-col gap-2'
 			>
 				<input
@@ -39,9 +43,10 @@ export function LatestPost() {
 					className='w-full rounded-full px-4 py-2 text-black'
 				/>
 				<button
-					type='submit'
+					// type='submit'
 					className='rounded-full bg-white/10 px-10 py-3 font-semibold transition hover:bg-white/20'
 					disabled={createPost.isPending}
+					onClick={onCreatePost}
 				>
 					{createPost.isPending ? 'Submitting...' : 'Submit'}
 				</button>
