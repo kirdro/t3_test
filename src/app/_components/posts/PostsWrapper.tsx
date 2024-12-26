@@ -14,7 +14,7 @@ export const PostsWrapper = ({ initialPosts }: { initialPosts: IPost[] }) => {
 				'grid auto-rows-max w-full bg-gradient-to-r from-indigo-500 to-blue-500 h-dvh justify-center gap-2 grid-cols-w100'
 			}
 		>
-			<div className={`grid w-full gap-3`}>
+			<div className={`grid w-full gap-3 `}>
 				<PostsList iPosts={posts} />
 				<CreatorPost />
 			</div>
