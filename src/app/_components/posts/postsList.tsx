@@ -1,24 +1,11 @@
 import { type IPost } from '@/app/posts/interfaces';
+import { ItemPosts } from '@/app/_components/posts/ItemPosts';
 
 export const PostsList = (props: { iPosts: IPost[] }) => {
 	return (
-		<div
-			className={
-				'grid w-full auto-rows-max h-max text-white gap-2 justify-center'
-			}
-		>
+		<div className={'grid auto-rows-auto w-full h-max text-white gap-2'}>
 			{props.iPosts.map((item, i) => {
-				return (
-					<div
-						key={`adfsdf${i}`}
-						className={
-							'grid auto-rows-max gap-1 w-max justify-items-center'
-						}
-					>
-						<span>{item.name}</span>
-						<span>{String(item.createdAt)}</span>
-					</div>
-				);
+				return <ItemPosts key={`adfsdf${i}`} post={item} />;
 			})}
 		</div>
 	);

@@ -4,4 +4,6 @@ export interface IPost {
 	createdById: string;
 	createdAt: Date;
 	updatedAt: Date;
+	text: string;
+	username: string;
 }
