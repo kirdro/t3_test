@@ -34,6 +34,7 @@ export const posts = createTable(
 		),
 		text: varchar('text').default(''),
 		username: varchar('username'),
+		userImg: varchar('userImg'),
 	},
 	(example) => ({
 		createdByIdIdx: index('created_by_idx').on(example.createdById),
@@ -41,9 +42,9 @@ export const posts = createTable(
 	}),
 );
 
-export const postsRelations = relations(posts, ({ one }) => ({
-	user: one(users),
-}));
+// export const postsRelations = relations(posts, ({ one }) => ({
+// 	user: one(users),
+// }));
 
 export const users = createTable('user', {
 	id: varchar('id', { length: 255 })

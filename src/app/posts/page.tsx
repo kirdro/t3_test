@@ -10,6 +10,7 @@ const Page = async () => {
 	if (session?.user) {
 		void api.post.getAll.prefetch();
 	}
+
 	return (
 		<HydrateClient>
 			{session?.user && <PostsWrapper initialPosts={[]} />}

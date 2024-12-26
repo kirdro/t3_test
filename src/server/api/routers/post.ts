@@ -30,6 +30,7 @@ export const postRouter = createTRPCRouter({
 				createdById: ctx.session.user.id,
 				text: text,
 				username: ctx.session.user.name,
+				userImg: ctx.session.user.image,
 			});
 		}),
 

@@ -6,4 +6,5 @@ export interface IPost {
 	updatedAt: Date;
 	text: string;
 	username: string;
+	userImg: string;
 }
