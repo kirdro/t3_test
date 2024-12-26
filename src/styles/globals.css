@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	display: grid;
+}
+
+.grid-cols-full {
+	grid-template-columns: 100%;
+}
+
+.grid-cols-w96 {
+	grid-template-columns: 24rem /* 384px */;
+}
+
+.grid-cols-w100 {
+	grid-template-columns: 500px;
+}

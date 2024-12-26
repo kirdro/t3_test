@@ -8,6 +8,7 @@ export function LatestPost() {
 	const [latestPost] = api.post.getLatest.useSuspenseQuery();
 	const utils = api.useUtils();
 	const [name, setName] = useState('');
+	const [text, setText] = useState('');
 	const createPost = api.post.create.useMutation({
 		onSuccess: async () => {
 			await utils.post.invalidate();
@@ -16,7 +17,7 @@ export function LatestPost() {
 	});
 
 	const onCreatePost = () => {
-		createPost.mutate({ name });
+		createPost.mutate({ name, text });
 	};
 
 	return (
@@ -34,6 +35,13 @@ export function LatestPost() {
 					placeholder='Title'
 					value={name}
 					onChange={(e) => setName(e.target.value)}
+					className='w-full rounded-full px-4 py-2 text-black'
+				/>
+				<input
+					type='text'
+					placeholder='Text'
+					value={name}
+					onChange={(e) => setText(e.target.value)}
 					className='w-full rounded-full px-4 py-2 text-black'
 				/>
 				<button

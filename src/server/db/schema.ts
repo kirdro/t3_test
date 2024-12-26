@@ -32,12 +32,18 @@ export const posts = createTable(
 		updatedAt: timestamp('updated_at', { withTimezone: true }).$onUpdate(
 			() => new Date(),
 		),
+		text: varchar('text').default(''),
+		username: varchar('username'),
 	},
 	(example) => ({
 		createdByIdIdx: index('created_by_idx').on(example.createdById),
 		nameIndex: index('name_idx').on(example.name),
 	}),
 );
+
+export const postsRelations = relations(posts, ({ one }) => ({
+	user: one(users),
+}));
 
 export const users = createTable('user', {
 	id: varchar('id', { length: 255 })
