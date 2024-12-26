@@ -6,6 +6,7 @@ import type { IPost } from '@/app/posts/interfaces';
 
 export const PostsWrapper = ({ initialPosts }: { initialPosts: IPost[] }) => {
 	const [posts] = api.post.getAll.useSuspenseQuery<IPost[]>();
+
 	console.log('fdsafasdf', posts);
 	return (
 		<div

@@ -8,6 +8,7 @@ import {
 	users,
 	verificationTokens,
 } from '@/server/db/schema';
+import YandexProvider from 'next-auth/providers/yandex';
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -38,7 +39,10 @@ declare module 'next-auth' {
 export const authConfig = {
 	providers: [
 		DiscordProvider,
-
+		YandexProvider({
+			clientId: process.env.YANDEX_CLIENT_ID,
+			clientSecret: process.env.YANDEX_CLIENT_SECRET,
+		}),
 		/**
 		 * ...add more providers here.
 		 *

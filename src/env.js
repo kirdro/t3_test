@@ -14,6 +14,9 @@ export const env = createEnv({
 		AUTH_DISCORD_ID: z.string(),
 		AUTH_DISCORD_SECRET: z.string(),
 		DATABASE_URL: z.string().url(),
+		YANDEX_CLIENT_ID: z.string(),
+		YANDEX_CLIENT_SECRET: z.string(),
+		AUTH_TRUST_HOST: z.string(),
 		NODE_ENV: z
 			.enum(['development', 'test', 'production'])
 			.default('development'),
@@ -37,6 +40,9 @@ export const env = createEnv({
 		AUTH_DISCORD_ID: process.env.AUTH_DISCORD_ID,
 		AUTH_DISCORD_SECRET: process.env.AUTH_DISCORD_SECRET,
 		DATABASE_URL: process.env.DATABASE_URL,
+		YANDEX_CLIENT_ID: process.env.YANDEX_CLIENT_ID,
+		YANDEX_CLIENT_SECRET: process.env.YANDEX_CLIENT_SECRET,
+		AUTH_TRUST_HOST: process.env.AUTH_TRUST_HOST,
 		NODE_ENV: process.env.NODE_ENV,
 	},
 	/**
