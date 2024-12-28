@@ -36,3 +36,28 @@ body {
 ::-webkit-scrollbar-thumb {
 	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
+.rows-template-full {
+	grid-template-rows: 100%;
+}
+
+:root {
+	--scrollbarBgColor: rgba(0, 0, 0, 0.05);
+	--scrollbarThumbColor: rgba(0, 0, 0, 0.15);
+	--scrollbarThumbColorSecond: rgba(255, 255, 255, 0.7);
+	--scrollbarWidth: 2px;
+	--scrollbarBorder: 0 solid var(--scrollbarBgColor);
+	--scrollbarBorderRadius: calc(var(--scrollbarWidth) / 4);
+}
+
+::-webkit-scrollbar {
+	width: var(--scrollbarWidth);
+}
+::-webkit-scrollbar-track {
+	background: var(--scrollbarBgColor);
+	border-radius: var(--scrollbarBorderRadius);
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbarThumbColor);
+	border-radius: var(--scrollbarBorderRadius);
+	border: var(--scrollbarBorder);
+}

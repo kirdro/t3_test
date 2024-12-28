@@ -5,7 +5,6 @@ import {
 	protectedProcedure,
 	publicProcedure,
 } from '@/server/api/trpc';
-import { posts } from '@/server/db/schema';
 
 export const postRouter = createTRPCRouter({
 	hello: publicProcedure
@@ -17,33 +16,33 @@ export const postRouter = createTRPCRouter({
 		}),
 
 	create: protectedProcedure
-		.input(
-			z.object({
-				name: z.string().min(1),
-				text: z.string(),
-			}),
-		)
+
+		.input(z.object({ name: z.string().min(1), text: z.string().min(3) }))
 		.mutation(async ({ ctx, input }) => {
-			const { name, text } = input;
-			await ctx.db.insert(posts).values({
-				name: name,
-				createdById: ctx.session.user.id,
-				text: text,
-				username: ctx.session.user.name,
-				userImg: ctx.session.user.image,
+			return ctx.db.post.create({
+				data: {
+					name: input.name,
+					createdBy: { connect: { id: ctx.session.user.id } },
+					text: input.text,
+					username:
+						ctx.session.user.name ? ctx.session.user.name : '',
+					userImg:
+						ctx.session.user.image ? ctx.session.user.image : '',
+				},
 			});
 		}),
 
 	getLatest: protectedProcedure.query(async ({ ctx }) => {
-		const post = await ctx.db.query.posts.findFirst({
-			orderBy: (posts, { desc }) => [desc(posts.createdAt)],
+		const post = await ctx.db.post.findFirst({
+			orderBy: { createdAt: 'desc' },
+			where: { createdBy: { id: ctx.session.user.id } },
 		});
 
 		return post ?? null;
 	}),
 
 	getAll: protectedProcedure.query(async ({ ctx }) => {
-		const posts = await ctx.db.query.posts.findMany();
+		const posts = await ctx.db.post.findMany();
 
 		return posts ?? null;
 	}),
