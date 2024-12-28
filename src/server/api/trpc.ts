@@ -27,7 +27,6 @@ import { db } from '@/server/db';
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 	const session = await auth();
 
 	return {
@@ -122,9 +121,9 @@ export const publicProcedure = t.procedure.use(timingMiddleware);
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure
+
 	.use(timingMiddleware)
 	.use(({ ctx, next }) => {
-		console.log('>>>>>>>>>>>>>>>>>>>>>>>>', ctx.session);
 		if (!ctx.session || !ctx.session.user) {
 			throw new TRPCError({ code: 'UNAUTHORIZED' });
 		}

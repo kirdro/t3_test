@@ -1,12 +1,11 @@
 import Link from 'next/link';
 
-import { LatestPost } from '@/app/_components/post/post';
+import { LatestPost } from '@/app/_components/post';
 import { auth } from '@/server/auth';
 import { api, HydrateClient } from '@/trpc/server';
-import { Posts } from '@/app/_components/post/posts';
 
 export default async function Home() {
-	const hello = await api.post.hello({ text: 'from tRPC kirdro' });
+	const hello = await api.post.hello({ text: 'from tRPC' });
 
 	const session = await auth();
 
@@ -22,7 +21,9 @@ export default async function Home() {
 						Create{' '}
 						<span className='text-[hsl(280,100%,70%)]'>T3</span> App
 					</h1>
-					<Link href={'/posts'}>Posts</Link>
+
+					<Link href={'/posts'}>posts</Link>
+
 					<div className='flex flex-col items-center gap-2'>
 						<p className='text-2xl text-white'>
 							{hello ? hello.greeting : 'Loading tRPC query...'}
@@ -48,7 +49,7 @@ export default async function Home() {
 							</Link>
 						</div>
 					</div>
-					{session?.user && <Posts />}
+
 					{session?.user && <LatestPost />}
 				</div>
 			</main>
