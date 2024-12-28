@@ -20,8 +20,8 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  createdBy   User   @relation(fields: [createdById], references: [id])
-  createdById String
+  createdBy   User?   @relation(fields: [createdById], references: [id])
+  createdById String?
   text        String
   username    String
   userImg     String
@@ -66,6 +66,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
+  role          Role      @default(USER)
 }
 
 model VerificationToken {
@@ -74,4 +75,9 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum Role {
+  USER
+  ADMIN
 }
