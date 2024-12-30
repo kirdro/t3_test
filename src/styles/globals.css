@@ -26,6 +26,10 @@ body {
 	grid-template-rows: calc(100% - 184px) max-content;
 }
 
+.grid-t-rows-max {
+	grid-template-rows: max-content;
+}
+
 ::-webkit-scrollbar {
 	width: 2px;
 }
